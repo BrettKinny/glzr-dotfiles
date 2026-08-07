@@ -147,6 +147,51 @@ window_rules:
     match:
       - window_class: { equals: 'OperationStatusWindow' }
 
+  # -------------------------------------------------------------------
+  # TandemOne (WPF app developed at %USERPROFILE%\Repos\tandemone).
+  #
+  # Every HWND the app creates besides its main shell window is transient:
+  # splash, variant launcher, on-screen keypad/keyboard, MessageBoxes and
+  # file pickers. Tiling those wedges a modal into the layout and leaves
+  # its parent unreachable until the modal is dismissed.
+  #
+  # These rules key off window_title. WPF gives every window the class
+  # `HwndWrapper[TandemOne;;<fresh guid>]`, so class can only separate WPF
+  # windows from Win32 dialogs (#32770), never one WPF window from another.
+  # That's why Splash/Launcher/Keypad/Keyboard carry distinct titles in the
+  # app source -- they were all "TandemOne" (or "MainWindow"), which made
+  # them indistinguishable from the shell window.
+  #
+  # MainWindow (title exactly "TandemOne") is deliberately NOT matched: it
+  # tiles like any other app.
+  # -------------------------------------------------------------------
+
+  # Splash, variant launcher, and the touch input surfaces. All are
+  # borderless/fixed-size and position themselves. shown-on-top matters for
+  # the launcher specifically: it hides itself when it loses focus, so with
+  # focus_follows_cursor a tiled window sliding under the cursor would
+  # dismiss it.
+  - commands: ['set-floating --centered --shown-on-top']
+    match:
+      - window_process: { equals: 'TandemOne' }
+        window_title: { regex: '^TandemOne (Splash|Launcher|Keypad|Keyboard)$' }
+
+  # MessageBoxes and the Win32 file/folder pickers -- both are class
+  # #32770. Keep their own size, just float and centre them on top.
+  - commands: ['set-floating --centered --shown-on-top']
+    match:
+      - window_process: { equals: 'TandemOne' }
+        window_class: { equals: '#32770' }
+
+  # Cutting -> "Outfeed Details" secondary window. Not a dialog, but it
+  # places and maximises itself onto monitor 2, which GlazeWM would undo by
+  # pulling it into a tile. Float without --centered so it keeps its own
+  # placement, and without --shown-on-top so it can be worked in normally.
+  - commands: ['set-floating']
+    match:
+      - window_process: { equals: 'TandemOne' }
+        window_title: { equals: 'Outfeed Details' }
+
 binding_modes:
   # Resize mode (Omarchy uses Super+=/- for resize, but this provides
   # an alternative vim-style resize mode).
