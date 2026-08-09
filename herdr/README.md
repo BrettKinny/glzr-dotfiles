@@ -70,11 +70,12 @@ Settings toggled in Herdr's UI are written back to `config.toml` (and
 `git status` surfaces them and you can commit or discard them deliberately.
 Expect reformatting and key reordering, as with Windows Terminal's settings UI.
 
-That is also why the machine-agnostic preferences at the top of `config.toml`
-(`onboarding`, `[ui.toast]`, `[theme]`, `[terminal] default_shell`) live here
-rather than in `%APPDATA%`: both machines should get them from `git pull`, which
-is then the entire sync story. There is no layering, so anything genuinely
-per-machine has nowhere to go — nothing here needs it yet.
+That is also why the portable preferences at the top of `config.toml`
+(`onboarding`, `[ui.toast]`, and `[theme]`) live here rather than in
+`%APPDATA%`. The companion Omarchy repository mirrors those values and the
+`[keys]` table; Windows alone adds `[terminal] default_shell = "pwsh"`.
+There is no config layering, so genuinely per-machine values must remain
+explicitly platform-specific.
 
 ## Key ownership
 
