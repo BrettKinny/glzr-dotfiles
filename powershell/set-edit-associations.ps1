@@ -6,6 +6,14 @@
     Registers an "MSEdit.TextFile" ProgId under HKCU (no admin needed), points the listed
     extensions at it, and registers edit.exe so it appears in Explorer's "Open with" list.
 
+    This also covers Ctrl+clicking file:/// links in Windows Terminal: WT just ShellExecutes
+    the file, so it follows the same association, and because Edit is a console app it opens
+    in a new window of the default terminal (which GlazeWM tiles).
+
+    Edit is resolved from System32 (inbox) or PATH (winget). The winget install is a portable
+    package whose path embeds the version -- after `winget upgrade Microsoft.Edit`, re-run
+    this script so the registered commands point at the new path.
+
     Extensions already claimed by another app (Notepad AppX, VS Code, Edge...) carry a
     hash-protected UserChoice/UserChoiceLatest key. Its *value* can't be rewritten, but the
     key can be deleted, which drops the extension back to our HKCU default. See the comments
@@ -54,12 +62,19 @@ param(
 $ErrorActionPreference = 'Stop'
 
 $ProgId    = 'MSEdit.TextFile'
-$EditExe   = Join-Path $env:SystemRoot 'System32\edit.exe'
 $ClassRoot = 'HKCU:\SOFTWARE\Classes'
 $FileExts  = 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FileExts'
 
+# Inbox Edit (newer Win 11 builds) lives in System32; the winget install is a
+# portable package whose path embeds the version, so it MOVES on every
+# `winget upgrade` -- re-run this script after upgrading Edit to re-point the
+# registry commands.
+$EditExe = Join-Path $env:SystemRoot 'System32\edit.exe'
 if (-not (Test-Path $EditExe)) {
-    throw "Microsoft Edit not found at $EditExe. Install it with: winget install Microsoft.Edit"
+    $EditExe = (Get-Command edit.exe -ErrorAction SilentlyContinue).Source
+}
+if (-not $EditExe) {
+    throw 'Microsoft Edit not found in System32 or on PATH. Install it with: winget install Microsoft.Edit'
 }
 
 Add-Type -Namespace GlzrAssoc -Name Native -MemberDefinition @'
