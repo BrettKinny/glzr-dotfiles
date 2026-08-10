@@ -4,6 +4,9 @@ onboarding = false
 
 [ui]
 agent_panel_sort = "spaces"
+# One tab is not a choice, so don't spend a row saying so. New tabs still come
+# from the keybinding, and the row returns as soon as there are two.
+hide_tab_bar_when_single_tab = true
 
 [ui.toast]
 delivery = "herdr"
