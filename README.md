@@ -6,7 +6,11 @@
 
 > Lives at `%USERPROFILE%\.glzr` (the default config path for both tools), so the repo *is* the config. No symlinks, no bootstrap script.
 
-> 💡 **Cross-machine muscle memory:** if you dual-boot or jump between Omarchy and Windows, flip Omarchy's "Hyprland mod key" setting to <kbd>Alt</kbd> (Omarchy ships a built-in toggle to swap <kbd>Super</kbd> ↔ <kbd>Alt</kbd> as the mod). Then *every* binding in this README works identically on both systems. No mental remapping when switching machines.
+> 💡 **Cross-machine muscle memory:** the binding pattern is shared, while the
+> physical modifier follows each OS: <kbd>Super</kbd> on Omarchy and
+> <kbd>Alt</kbd> on Windows. Read both as <kbd>Mod</kbd>. The one-page
+> [keyboard cheat sheet](KEYBOARD.md) shows the common chords and the few
+> platform-specific differences.
 
 ## Screenshot
 
@@ -16,11 +20,13 @@
 
 ![Desktop screenshot](https://github.com/user-attachments/assets/39d227c9-81ea-4316-b2f6-89268770e6d0)
 
-*lazygit on the left, fastfetch on the right, both running in minimal Terminal windows with Oh My Posh.*
+*lazygit on the left, fastfetch on the right, both running in minimal Terminal windows with Starship.*
 
 ## What this gives you
 
-The goal is **Omarchy parity**: every binding below is the Omarchy default with `Super` swapped for `Alt`. If a workflow exists in Omarchy, it should work the same way here.
+The goal is **Omarchy parity**: the core binding grammar mirrors Omarchy with
+`Super` represented by `Alt`. Platform-specific applications and the documented
+deviations remain intentionally different.
 
 | Omarchy / Hyprland | This config | Notes |
 |---|---|---|
@@ -84,6 +90,9 @@ Herdr is the reference implementation of the application layer: `Ctrl+Arrow`
 focuses panes, `Ctrl+Shift+Arrow` moves them, and familiar browser-style `Ctrl`
 bindings manage tabs. See [`herdr/`](herdr/README.md). Its `F12` prefix remains as
 a compatibility path, not the primary interaction model.
+
+For the compact daily reference, use the one-page [keyboard cheat
+sheet](KEYBOARD.md).
 
 ## Install
 
@@ -297,7 +306,8 @@ cmd /c mklink /J "$env:USERPROFILE\OneDrive" "$tenant"
 
 ## Keybindings
 
-**Mod key:** <kbd>Alt</kbd> (stands in for Omarchy's <kbd>Super</kbd>). Everything else matches Omarchy 1:1; read these tables as "Omarchy with `Super` → `Alt`".
+**Mod key:** <kbd>Alt</kbd> (stands in for Omarchy's <kbd>Super</kbd>). The core
+grammar matches; application choices and the deviations listed below do not.
 
 ### Window management
 
