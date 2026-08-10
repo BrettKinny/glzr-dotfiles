@@ -21,9 +21,25 @@ applications (such as VIM)". The unbound key falls through to the app.
 | `Alt+arrows`, `Alt+Shift+arrows`, `Alt+Shift+-`/`=`, `Alt+Shift+D`, `Alt+Enter` | WT panes/focus/fullscreen — GlazeWM owns the whole `Alt` namespace |
 | `Ctrl+Shift+1`–`9` | WT "new tab with profile N" |
 | `Ctrl+Shift+T`/`W`/`P`/`Space`, `Ctrl+Tab`, `Ctrl+Shift+Tab`, `Ctrl+,`, `Ctrl+Shift+,` | WT tabs, palette, settings — Fresh has its own |
-| Herdr's `Ctrl` tab, pane, sidebar, go-to, split, zoom, and workspace chords | Herdr is the focused application and must receive its native shortcuts directly |
+| `Ctrl+T`/`W`/`B`/`G`, `Ctrl+arrows`, `Ctrl+Shift+Z`, `Ctrl+\`, `Ctrl+Shift+\`, `Ctrl+Shift+B`/`N` | the nested-app layer: whichever of Herdr or Fresh is focused must receive these directly |
 
 Terminal clipboard stays on `Ctrl+Shift+C` / `Ctrl+Shift+V`.
+
+`Ctrl+1`–`9` are not merely unbound — unbinding is useless for them, since the VT
+input encoding has no representation for Ctrl+digit and WT drops the chord
+entirely (microsoft/terminal#7746). Instead, `sendInput` actions
+(`User.herdrTab1`–`9`) translate each one to `ESC [24~` (F12) plus the digit, so
+Herdr receives its `prefix+1..9` fallback. Cost: in a plain shell tab — or in
+Fresh — the chord types that escape sequence instead of doing nothing.
+
+### Herdr and Fresh both want `Ctrl`
+
+The grammar gives `Ctrl` to "the focused application", but Fresh running inside a
+Herdr pane nests two of them on one modifier. Herdr yields: it keeps `Ctrl` only
+where Fresh has no claim, and moved the rest to `Ctrl+Shift` (`T`, `W`, `B`) or to
+its `F12` prefix (pane focus/move, zoom, tab cycling). So the `Ctrl` chords above
+stay unbound in WT for Fresh's sake even though Herdr no longer takes them. See
+[`../herdr/README.md`](../herdr/README.md).
 
 **Rationale:** GlazeWM already manages windows and Fresh already manages splits and
 tabs, so WT's equivalents were redundant middlemen competing for keys. The tradeoff

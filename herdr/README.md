@@ -4,19 +4,26 @@ Herdr is the application layer of the shared keyboard language: Windows uses
 `Alt` for GlazeWM where Omarchy uses `Super`, while Herdr uses immediate `Ctrl`
 bindings. `Shift` means move, reverse, or a higher-level variant.
 
+Fresh runs *inside* Herdr panes, so both want the `Ctrl` layer and Herdr has no
+pass-through mode. Herdr yields wherever Fresh has a claim: `Ctrl+T`/`W`/`B` moved
+up to `Ctrl+Shift`, and pane focus/move, zoom and tab cycling moved to the `F12`
+prefix. Fresh's `Ctrl+Alt` split layer never collides.
+
 ## Bindings
 
 | Binding | Action |
 |---|---|
-| `Ctrl+T` / `Ctrl+W` | New tab / close pane |
-| `Ctrl+Tab` / `Ctrl+Shift+Tab` | Next / previous tab |
+| `Ctrl+Shift+T` / `Ctrl+Shift+W` | New tab / close pane |
+| `Ctrl+Tab` / `Ctrl+Shift+Tab` | Next / previous workspace |
+| `F12 N` / `F12 P` | Next / previous tab |
 | `Ctrl+1..9` | Select tab |
-| `Ctrl+Arrow` | Focus pane |
-| `Ctrl+Shift+Arrow` | Move pane |
-| `Ctrl+B` / `Ctrl+G` | Sidebar / go to |
+| `F12 H/J/K/L` | Focus pane |
+| `F12 Shift+H/J/K/L` | Move pane |
+| `Ctrl+Shift+B` / `Ctrl+G` | Sidebar / go to |
 | `Ctrl+\` / `Ctrl+Shift+\` | Split vertically / horizontally |
-| `Ctrl+Shift+Z` | Zoom pane |
+| `F12 Z` | Zoom pane |
 | `Ctrl+Shift+N` | New workspace |
+| `F12 Shift+D` | Close workspace |
 
 Herdr still needs a prefix for commands without a good native chord. It is `F12`,
 and the original prefix forms remain alongside every remapped command.
@@ -79,5 +86,6 @@ per-machine has nowhere to go — nothing here needs it yet.
 ## Key ownership
 
 The tracked Windows Terminal settings explicitly unbind these chords so they
-reach Herdr. Herdr deliberately owns them before a shell or nested TUI does;
-use its `F12` fallbacks if a particular keyboard or terminal cannot send one.
+reach Herdr. Use the `F12` fallbacks if a particular keyboard or terminal cannot
+send one — and note WT keeps unbinding the plain `Ctrl` chords Herdr gave back,
+because Fresh still needs them to fall through.

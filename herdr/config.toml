@@ -30,35 +30,39 @@ prefix = "f12"
 help = ["ctrl+?", "prefix+?"]
 goto = ["ctrl+g", "prefix+g"]
 workspace_picker = "prefix+w"
-toggle_sidebar = ["ctrl+b", "prefix+b"]
+# Plain Ctrl+B belongs to Fresh's editing layer; Shift lifts it to Herdr's UI.
+toggle_sidebar = ["ctrl+shift+b", "prefix+b"]
 detach = ["ctrl+shift+q", "prefix+q"]
 
-# Tabs use browser/editor conventions.
-new_tab = ["ctrl+t", "prefix+c"]
-previous_tab = ["ctrl+shift+tab", "prefix+p"]
-next_tab = ["ctrl+tab", "prefix+n"]
+# Plain Ctrl+T/W belong to Fresh's editing layer; Shift lifts them to Herdr.
+new_tab = ["ctrl+shift+t", "prefix+c"]
+previous_tab = "prefix+p"
+next_tab = "prefix+n"
 switch_tab = ["ctrl+1..9", "prefix+1..9"]
 rename_tab = "prefix+shift+t"
 close_tab = "prefix+shift+x"
 
-# Workspaces are the next level above tabs.
+# Workspaces are the next level above tabs, so Ctrl+Tab cycles them.
 new_workspace = ["ctrl+shift+n", "prefix+shift+n"]
+next_workspace = ["ctrl+tab", "prefix+tab"]
+previous_workspace = ["ctrl+shift+tab", "prefix+shift+tab"]
 rename_workspace = "prefix+shift+w"
 close_workspace = "prefix+shift+d"
 
-# Ctrl moves focus; adding Shift moves the pane itself.
-focus_pane_left = ["ctrl+left", "prefix+h"]
-focus_pane_down = ["ctrl+down", "prefix+j"]
-focus_pane_up = ["ctrl+up", "prefix+k"]
-focus_pane_right = ["ctrl+right", "prefix+l"]
-swap_pane_left = ["ctrl+shift+left", "prefix+shift+h"]
-swap_pane_down = ["ctrl+shift+down", "prefix+shift+j"]
-swap_pane_up = ["ctrl+shift+up", "prefix+shift+k"]
-swap_pane_right = ["ctrl+shift+right", "prefix+shift+l"]
+# Pane movement is prefix-only: Fresh owns Ctrl+arrows (word-jump) and
+# Ctrl+Shift+arrows (add-cursor, word-select) when it runs inside a pane.
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+swap_pane_left = "prefix+shift+h"
+swap_pane_down = "prefix+shift+j"
+swap_pane_up = "prefix+shift+k"
+swap_pane_right = "prefix+shift+l"
 
-# Pane lifecycle and layout.
-close_pane = ["ctrl+w", "prefix+x"]
+# Pane lifecycle and layout. Zoom is rare enough to live on the prefix alone.
+close_pane = ["ctrl+shift+w", "prefix+x"]
 split_vertical = ["ctrl+backslash", "prefix+v"]
 split_horizontal = ["ctrl+shift+backslash", "prefix+minus"]
-zoom = ["ctrl+shift+z", "prefix+z"]
+zoom = "prefix+z"
 resize_mode = "prefix+r"
