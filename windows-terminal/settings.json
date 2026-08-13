@@ -68,6 +68,7 @@
         { "id": "unbound", "keys": "ctrl+shift+z" },
         { "id": "unbound", "keys": "ctrl+shift+b" },
         { "id": "unbound", "keys": "ctrl+shift+n" },
+        { "id": "unbound", "keys": "ctrl+shift+g" },
         { "id": "User.herdrTab1", "keys": "ctrl+1" },
         { "id": "User.herdrTab2", "keys": "ctrl+2" },
         { "id": "User.herdrTab3", "keys": "ctrl+3" },

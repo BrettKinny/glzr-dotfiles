@@ -21,7 +21,7 @@ applications (such as VIM)". The unbound key falls through to the app.
 | `Alt+arrows`, `Alt+Shift+arrows`, `Alt+Shift+-`/`=`, `Alt+Shift+D`, `Alt+Enter` | WT panes/focus/fullscreen — GlazeWM owns the whole `Alt` namespace |
 | `Ctrl+Shift+1`–`9` | WT "new tab with profile N" |
 | `Ctrl+Shift+T`/`W`/`P`/`Space`, `Ctrl+Tab`, `Ctrl+Shift+Tab`, `Ctrl+,`, `Ctrl+Shift+,` | WT tabs, palette, settings — Fresh has its own |
-| `Ctrl+T`/`W`/`B`/`G`, `Ctrl+arrows`, `Ctrl+Shift+Z`, `Ctrl+\`, `Ctrl+Shift+\`, `Ctrl+Shift+B`/`N` | the nested-app layer: whichever of Herdr or Fresh is focused must receive these directly |
+| `Ctrl+T`/`W`/`B`/`G`, `Ctrl+arrows`, `Ctrl+Shift+Z`, `Ctrl+\`, `Ctrl+Shift+\`, `Ctrl+Shift+B`/`N`/`G` | the nested-app layer: whichever of Herdr or Fresh is focused must receive these directly |
 
 Terminal clipboard stays on `Ctrl+Shift+C` / `Ctrl+Shift+V`.
 

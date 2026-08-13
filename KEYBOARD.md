@@ -46,16 +46,22 @@ These send universal clipboard chords, so they work in terminals and GUI apps.
 
 ## Herdr
 
+Fresh runs inside Herdr panes and there is no pass-through, so Herdr keeps `Ctrl`
+only where Fresh has no claim. The rest moved up to `Ctrl+Shift` or down to the
+`F12` prefix.
+
 | Action | Shortcut |
 | --- | --- |
-| New tab / close pane | `Ctrl+T` / `Ctrl+W` |
-| Next / previous tab | `Ctrl+Tab` / `Ctrl+Shift+Tab` |
+| New tab / close pane | `Ctrl+Shift+T` / `Ctrl+Shift+W` |
+| Next / previous workspace | `Ctrl+Tab` / `Ctrl+Shift+Tab` |
+| Next / previous tab | `F12 N` / `F12 P` |
 | Select tab | `Ctrl+1..9` |
-| Focus / move pane | `Ctrl+Arrow` / `Ctrl+Shift+Arrow` |
-| Sidebar / go to | `Ctrl+B` / `Ctrl+G` |
+| Focus / move pane | `F12 H/J/K/L` / `F12 Shift+…` |
+| Sidebar / go to | `Ctrl+Shift+B` / `Ctrl+G` |
 | Split vertical / horizontal | `Ctrl+\` / `Ctrl+Shift+\` |
-| Zoom pane / new workspace | `Ctrl+Shift+Z` / `Ctrl+Shift+N` |
+| Zoom pane / new workspace | `F12 Z` / `Ctrl+Shift+N` |
+| New worktree workspace | `Ctrl+Shift+G` |
 
-`F12` remains the Herdr recovery prefix. System-only extras: Omarchy uses
-`Alt+Space` for hold-to-dictate; Windows uses `Mod+R` for resize mode and
-`Mod+Shift+R` to reload GlazeWM.
+`F12` remains the Herdr recovery prefix, and every command still answers to its
+`F12` form. System-only extras: Omarchy uses `Alt+Space` for hold-to-dictate;
+Windows uses `Mod+R` for resize mode and `Mod+Shift+R` to reload GlazeWM.

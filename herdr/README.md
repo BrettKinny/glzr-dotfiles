@@ -23,6 +23,7 @@ prefix. Fresh's `Ctrl+Alt` split layer never collides.
 | `Ctrl+\` / `Ctrl+Shift+\` | Split vertically / horizontally |
 | `F12 Z` | Zoom pane |
 | `Ctrl+Shift+N` | New workspace |
+| `Ctrl+Shift+G` | New worktree workspace |
 | `F12 Shift+D` | Close workspace |
 
 Herdr still needs a prefix for commands without a good native chord. It is `F12`,

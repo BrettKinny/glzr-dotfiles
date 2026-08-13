@@ -44,6 +44,8 @@ close_tab = "prefix+shift+x"
 
 # Workspaces are the next level above tabs, so Ctrl+Tab cycles them.
 new_workspace = ["ctrl+shift+n", "prefix+shift+n"]
+# Worktree = workspace + branch checkout; Shift lifts Ctrl+G (go to) to create.
+new_worktree = ["ctrl+shift+g", "prefix+shift+g"]
 next_workspace = ["ctrl+tab", "prefix+tab"]
 previous_workspace = ["ctrl+shift+tab", "prefix+shift+tab"]
 rename_workspace = "prefix+shift+w"
